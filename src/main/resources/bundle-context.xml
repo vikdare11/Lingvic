@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!-- regular spring configuration file defining the beans for this
+         bundle. The configuration of OSGi definitions is kept in a separate
+         configuration file so that this file can easily be used
+         for integration testing outside of an OSGi environment -->
+
+    <import resource="datasource.xml"/>
+
+    <context:component-scan base-package="by.bsuir.lingvic"/>
+    <context:annotation-config/>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven proxy-target-class="true" transaction-manager="txManager"/>
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager"
+          id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="hibernateJpaVendorAdapter"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+
+    <bean id='entityManagerFactory'
+          class='org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean'>
+        <property name='dataSource' ref='dataSource'/>
+        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="javax.persistence.schema-generation.database.action">none</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+            </props>
+        </property>
+        <property name="packagesToScan" value="by.bsuir.lingvic"/>
+        <!-- Set share cache mode -->
+        <property name="sharedCacheMode" value="ENABLE_SELECTIVE"/>
+        <!-- Set validation mode -->
+        <property name="validationMode" value="NONE"/>
+    </bean>
+
+    <jpa:repositories base-package="by.bsuir.lingvic"/>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.jdbc.use_get_generated_keys">true</prop>
+                <prop key="cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="show_sql">true</prop>
+            </props>
+        </property>
+
+        <property name="mappingResources">
+            <list>
+                <value>Beans.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

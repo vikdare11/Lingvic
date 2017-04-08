@@ -1,0 +1,7 @@
+.idea
+ceres_app.iml
+ceres.iml
+.idea/dataSources.local.xml
+.idea/workspace.xml
+src/test/
+src/main/resources/database.properties
