@@ -7,18 +7,27 @@ import Students from './components/Students'
 import Menu from './components/Menu'
 import Header from './components/Header'
 import Login from './components/Login'
+import DetailedView from './components/DetailedView'
 import {isEmptyObject} from './utils'
 import {getMenuItems} from './utils/menu'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { menuItem: [], menuItems: [], isMenuOpened: false, students: [], currentUser: [] };
+        this.state = {
+          menuItem: [],
+          menuItems: [],
+          isMenuOpened: false,
+          students: [],
+          currentUser: [],
+          currentStudentId: -1
+        };
     }
 
     componentDidMount() {
         client({method: 'GET', path: '/student/all'}).done(response => {
             this.setState({students: response.entity});
+            console.log(response);
         });
     }
 
@@ -56,6 +65,14 @@ class App extends React.Component {
       this.setState({ currentUser: [] });
     }
 
+    handleOnStudentClick(studentId) {
+      this.setState({ currentStudentId: studentId });
+    }
+
+    closeDetailedView() {
+      this.setState({ currentStudentId: -1 })
+    }
+
     render() {
         return isEmptyObject(this.state.currentUser)
           ? <Login ref="login" onClick={this.handleLoginClick.bind(this)}/>
@@ -70,7 +87,12 @@ class App extends React.Component {
               : null}
             <div className={`css-siteBody ${this.state.isMenuOpened ? "menuOpened" : ""}`}>
               {this.state.menuItem.Name == "students"
-                ? <Students students={this.state.students}/>
+                ? this.state.currentStudentId < 0
+                  ? <Students students={this.state.students}
+                              onStudentClick={this.handleOnStudentClick.bind(this)}/>
+                  : <DetailedView studentId={this.state.currentStudentId}
+                                  students={this.state.students}
+                                  onCloseDetailedView={this.closeDetailedView.bind(this)}/>
                 : null}
             </div>
           </div>

@@ -2,7 +2,7 @@ package by.bsuir.lingvic.domain;
 
 import javax.persistence.*;
 
-@Entity(name = "set")
+@Entity(name = "lingvo_set")
 public class Set {
 
     @Id

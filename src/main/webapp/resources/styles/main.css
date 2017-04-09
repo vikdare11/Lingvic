@@ -56,15 +56,15 @@ tr:nth-child(even){
 }
 .css-table {
   display: inline-block;
-  width: 100%;
+  width: 100%
 }
 .css-siteBody {
   width: 100%;
-  margin: 10px;
+  margin: 20px;
 }
 .css-siteBody.menuOpened {
   display: inline-block;
-  width: calc(100% - 220px);
+  width: calc(100% - 240px);
 }
 .css-menuButton, .css-logo, .css-logoutButton {
   display: inline-block;
@@ -80,7 +80,11 @@ tr:nth-child(even){
 .css-siteHeader.menuOpened {
   margin-left: 200px;
 }
-
+.css-button {
+  font-size: 17px;
+  background-color: #4CAF50;
+  color: white;
+}
 .css-menuButton {
   font-size: 20px;
   padding: 9px;
@@ -97,10 +101,15 @@ tr:nth-child(even){
 .css-logoutButton {
   float: right;
   margin-right: 10px;
-  font-size: 17px;
   margin-top: 6px;
 }
-
+.css-label-main {
+  font-weight: bold;
+  margin: 30px 0 20px 0;
+}
+.css-label {
+  font-weight: bold;
+}
 .css-validation {
   color: red;
   font-size: 18px;

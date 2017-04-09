@@ -3,7 +3,10 @@ package by.bsuir.lingvic.domain;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import java.util.*;
+import java.util.Set;
 
 @Entity(name = "student")
 public class Student {
@@ -30,6 +33,9 @@ public class Student {
     @OneToOne(fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
     private User user;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    private java.util.Set<StudentWordSet> studentWordSets = new HashSet<>();
 
     public Long getUser_id() {
         return user_id;
@@ -77,5 +83,13 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<StudentWordSet> getStudentWordSets() {
+        return studentWordSets;
+    }
+
+    public void setStudentWordSets(Set<StudentWordSet> studentWordSets) {
+        this.studentWordSets = studentWordSets;
     }
 }

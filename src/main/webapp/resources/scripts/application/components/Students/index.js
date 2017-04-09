@@ -3,11 +3,8 @@ import Student from "./student"
 
 export default class Students extends React.Component{
     render() {
-        let students = this.props.students.map((student, index) =>
-            <Student key={index} student={student}/>
-        );
         return <div className="css-table">
-          {students.length > 0
+          {this.props.students.length > 0
             ?  <table>
                   <tbody>
                   <tr>
@@ -16,7 +13,9 @@ export default class Students extends React.Component{
                       <th>Номер группы</th>
                       <th>Информация</th>
                   </tr>
-                  {students}
+                  {this.props.students.map((student, index) =>
+                      <Student key={index} student={student} onClick={this.props.onStudentClick.bind(this)}/>
+                  )}
                   </tbody>
                 </table>
             : null}

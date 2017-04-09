@@ -16,7 +16,8 @@ public class StudentController {
     @RequestMapping("/student/all")
     @ResponseBody
     public List<Student> getAllStudents() {
-        return (List<Student>) studentRepository.findAll();
+        List<Student> students = (List<Student>) studentRepository.findAll();
+        return students;
     }
 
     @RequestMapping("/student/{id}")
