@@ -8,3 +8,4 @@ src/main/webapp/resources/scripts/node_modules
 
 /out/
 /target/
+/src/main/webapp/resources/scripts/build/

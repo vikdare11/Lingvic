@@ -6,6 +6,7 @@
     <title>Lingvic</title>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="./resources/styles/main.css" />
+    <link rel="stylesheet" href="./resources/styles/login.css" />
 </head>
 <body>
 

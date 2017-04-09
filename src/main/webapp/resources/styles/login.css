@@ -1,0 +1,29 @@
+.css-loginInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.css-loginButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 11px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.css-loginButton:hover {
+    opacity: 0.8;
+}
+
+.css-login {
+    width: 300px;
+    margin: auto;
+    margin-top: 40px;
+}

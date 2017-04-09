@@ -21,7 +21,6 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> role = new HashSet<>();

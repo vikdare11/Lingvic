@@ -5,7 +5,7 @@ export default class Header extends React.Component{
       return <div className={`css-siteHeader ${this.props.isMenuOpened ? "menuOpened" : ""}`}>
         <div className="fa fa-bars css-menuButton" onClick={this.props.onToggleMenu}></div>
         <div className="css-logo">Lingvic</div>
-        <button className="css-logoutButton">Выйти</button>
+        <button className="css-logoutButton" onClick={this.props.onLogoutClick}>Выйти</button>
       </div>
     }
 }

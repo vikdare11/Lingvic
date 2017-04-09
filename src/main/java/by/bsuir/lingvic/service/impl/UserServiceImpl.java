@@ -8,6 +8,7 @@ import by.bsuir.lingvic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import java.util.HashSet;
 import java.util.List;
@@ -61,5 +62,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByLogin(String login) {
         return userRepository.findByLogin(login);
+    }
+
+    @Override
+    public User findUserByLoginAndPassword(String login, String password) {
+        password = DigestUtils.md5DigestAsHex(password.getBytes());
+        return userRepository.findByLoginAndPassword(login, password);
     }
 }
