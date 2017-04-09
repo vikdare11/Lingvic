@@ -6,12 +6,6 @@ export function getMenuItems(role) {
         items = [
             {
               Id: 0,
-              Name: "words",
-              Label: "Наборы слов",
-              faClass: "book"
-            },
-            {
-              Id: 1,
               Name: "profile",
               Label: "Мой профиль",
               faClass: "id-card-o"

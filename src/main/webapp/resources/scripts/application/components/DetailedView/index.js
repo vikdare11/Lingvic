@@ -95,10 +95,10 @@ export default class DetailedView extends React.Component{
           : <div className="css-sets">
               <span className="css-label-main">Наборы, которые необходимо пройти: </span>
               {this.state.setsToChallenge.map((set, index) => ( <div key={index}>
-                <div><span className="css-label">Название: </span><span>{set.set.name}</span></div>
+                <div className="css-oneSet"><span className="css-label">Название: </span><span>{set.set.name}</span></div>
                 {isNullOrUndefined(this.props.onStartChallenge)
                   ? null
-                  : <button className="css-button" onClick={this.onStartChallenge.bind(this)}>Начать</button>}</div>
+                  : <button className="css-button" onClick={this.props.onStartChallenge.bind(this, set.set.id)}>Начать</button>}</div>
               ))}
           </div>}
         {isEmptyObject(this.state.restSets) || isNullOrUndefined(this.props.assignSetToStudent)

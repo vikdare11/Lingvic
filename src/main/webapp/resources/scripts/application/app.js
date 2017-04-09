@@ -90,6 +90,10 @@ class App extends React.Component {
       xhr.send(JSON.stringify({ setId: setId, studentId: studentId, isChallenged: isChallenged }));
     }
 
+    handleStartChallenge(setId) {
+      console.log(setId);
+    }
+
     render() {
         return isEmptyObject(this.state.currentUser)
           ? <Login ref="login" onClick={this.handleLoginClick.bind(this)}/>
@@ -114,7 +118,8 @@ class App extends React.Component {
                 : null}
               {this.state.menuItem.Name == "profile"
                 ? <DetailedView studentId={this.state.currentUser.id}
-                                  students={this.state.students}/>
+                                students={this.state.students}
+                                onStartChallenge={this.handleStartChallenge.bind(this)}  />
                 : null}
             </div>
           </div>

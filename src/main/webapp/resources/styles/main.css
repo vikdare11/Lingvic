@@ -58,6 +58,10 @@ tr:nth-child(even){
   display: inline-block;
   width: 100%;
 }
+.css-oneSet {
+  display: inline-block;
+  margin-right: 20px;
+}
 .css-siteBody {
   width: calc(100% - 40px);
   margin: 20px;
