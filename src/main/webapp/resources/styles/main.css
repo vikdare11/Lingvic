@@ -117,3 +117,8 @@ tr:nth-child(even){
   color: red;
   font-size: 18px;
 }
+.css-select {
+  margin: 0 20px 0 10px;
+  width: 150px;
+  font-size: 17px;
+}
