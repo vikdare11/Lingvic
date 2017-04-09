@@ -1,6 +1,7 @@
 package by.bsuir.lingvic.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "student_word_set")
 public class StudentWordSet {
@@ -19,8 +20,19 @@ public class StudentWordSet {
     private Set set;
 
     @Column(name = "is_challenged")
-    private boolean isChanllenged;
+    private int isChallenged;
 
+    @Column(name = "challenge_date")
+    @Temporal(TemporalType.DATE)
+    private Date challengeDate;
+
+    public Date getChallengeDate() {
+        return challengeDate;
+    }
+
+    public void setChallengeDate(Date challengeDate) {
+        this.challengeDate = challengeDate;
+    }
 
     public Student getStudent() {
         return student;
@@ -46,11 +58,11 @@ public class StudentWordSet {
         this.set = set;
     }
 
-    public boolean isChanllenged() {
-        return isChanllenged;
+    public int getIsChallenged() {
+        return isChallenged;
     }
 
-    public void setChanllenged(boolean chanllenged) {
-        isChanllenged = chanllenged;
+    public void setIsChallenged(int isChallenged) {
+        this.isChallenged = isChallenged;
     }
 }

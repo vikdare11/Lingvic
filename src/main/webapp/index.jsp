@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta charset="UTF-8"/>
-    <title>ReactJS + Spring Data REST</title>
+    <title>Lingvic</title>
     <link rel="stylesheet" href="/main.css" />
 </head>
 <body>

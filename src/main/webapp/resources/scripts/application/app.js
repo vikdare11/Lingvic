@@ -1,9 +1,9 @@
 'use strict';
 
-const React = require('react')
-const ReactDOM = require('react-dom')
-const client = require('./client')
-const Students = require('./components/Students')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import client from './client'
+import Students from './components/Students'
 
 class App extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <Students students={this.state.students} />
+            <Students students={this.state.students}/>
         )
     }
 }
