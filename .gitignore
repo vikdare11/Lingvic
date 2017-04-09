@@ -4,3 +4,7 @@ lingvic.iml
 .idea/workspace.xml
 src/test/
 src/main/resources/database.properties
+src/main/webapp/resources/scripts/node_modules
+
+/out/
+/target/
