@@ -1,11 +1,11 @@
 'use strict';
 
-const React = require('react');
+const React = require('react')
 const ReactDOM = require('react-dom')
-const client = require('./client');
+const client = require('./client')
+const Students = require('./components/Students')
 
 class App extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = { students: [] };
@@ -19,7 +19,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>{this.state.students.map((student, index) => ( <div key={index}>{student.fullName}</div> ))}</div>
+            <Students students={this.state.students} />
         )
     }
 }
