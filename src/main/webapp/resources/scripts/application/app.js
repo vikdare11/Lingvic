@@ -8,7 +8,7 @@ import Menu from './components/Menu'
 import Header from './components/Header'
 import Login from './components/Login'
 import DetailedView from './components/DetailedView'
-import {isEmptyObject} from './utils'
+import {isEmptyObject, isNullOrUndefined} from './utils'
 import {getMenuItems} from './utils/menu'
 
 class App extends React.Component {
@@ -72,6 +72,24 @@ class App extends React.Component {
       this.setState({ currentStudentId: -1 })
     }
 
+    handleAssignSet(setId, studentId, isChallenged) {
+      if (isNullOrUndefined(setId) || isNullOrUndefined(studentId) || isNullOrUndefined(isChallenged)) return;
+      var xhr = new XMLHttpRequest(),
+          me = this;
+      xhr.open('POST', '/student/assign_set');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var data = JSON.parse(xhr.responseText);
+          if (!isEmptyObject(data))
+            me.setState({ students: data });
+        }
+        if (xhr.status === 404) {
+        }
+      };
+      xhr.send(JSON.stringify({ setId: setId, studentId: studentId, isChallenged: isChallenged }));
+    }
+
     render() {
         return isEmptyObject(this.state.currentUser)
           ? <Login ref="login" onClick={this.handleLoginClick.bind(this)}/>
@@ -91,7 +109,8 @@ class App extends React.Component {
                               onStudentClick={this.handleOnStudentClick.bind(this)}/>
                   : <DetailedView studentId={this.state.currentStudentId}
                                   students={this.state.students}
-                                  onCloseDetailedView={this.closeDetailedView.bind(this)}/>
+                                  onCloseDetailedView={this.closeDetailedView.bind(this)}
+                                  onAssignSet={this.handleAssignSet.bind(this)}/>
                 : null}
             </div>
           </div>

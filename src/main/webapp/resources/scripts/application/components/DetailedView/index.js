@@ -1,6 +1,5 @@
 import React from "react";
-import {isEmptyObject} from '../../utils'
-import {isNullOrUndefined} from '../../utils'
+import {isEmptyObject, isNullOrUndefined} from '../../utils'
 
 export default class DetailedView extends React.Component{
   constructor(props) {
@@ -16,9 +15,21 @@ export default class DetailedView extends React.Component{
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const student = this.getStudent(nextProps.students, nextProps.studentId),
+          sets = this.getSets(student);
+    this.setState({
+      student: student,
+      selectValue: isEmptyObject(sets.restSets) ? "" : sets.restSets[0].set.name,
+      completedSets: sets.completedSets,
+      setsToChallenge: sets.setsToChallenge,
+      restSets: sets.restSets
+    });
+  }
+
   getStudent(students, studentId) {
     if (isEmptyObject(students)) return;
-    var student = [];
+    let student = [];
     students.forEach((localStudent, index) => {
       if (localStudent.user_id == studentId) {
         student = localStudent;
@@ -41,11 +52,23 @@ export default class DetailedView extends React.Component{
   }
 
   assignSetToStudent() {
-    console.log(this.state.selectValue);
+    this.props.onAssignSet(this.getSetId(), this.state.student.user_id, 1);
   }
 
   setSelectValue(e) {
     this.setState({ selectValue: e.target.value });
+  }
+
+  getSetId() {
+    if (isEmptyObject(this.state.restSets)) return;
+    let setId;
+    this.state.restSets.forEach((set, index) => {
+      if (set.set.name == this.state.selectValue) {
+        setId = set.set.id;
+        return;
+      }
+    });
+    return setId;
   }
 
   render() {
