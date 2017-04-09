@@ -112,6 +112,10 @@ class App extends React.Component {
                                   onCloseDetailedView={this.closeDetailedView.bind(this)}
                                   onAssignSet={this.handleAssignSet.bind(this)}/>
                 : null}
+              {this.state.menuItem.Name == "profile"
+                ? <DetailedView studentId={this.state.currentUser.id}
+                                  students={this.state.students}/>
+                : null}
             </div>
           </div>
     }

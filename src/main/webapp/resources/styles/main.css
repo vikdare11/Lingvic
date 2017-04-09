@@ -56,10 +56,10 @@ tr:nth-child(even){
 }
 .css-table {
   display: inline-block;
-  width: 100%
+  width: 100%;
 }
 .css-siteBody {
-  width: 100%;
+  width: calc(100% - 40px);
   margin: 20px;
 }
 .css-siteBody.menuOpened {

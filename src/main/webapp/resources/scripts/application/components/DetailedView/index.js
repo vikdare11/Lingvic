@@ -74,7 +74,9 @@ export default class DetailedView extends React.Component{
   render() {
       const student = this.state.student;
       return <div>
-        <button className="css-button" onClick={this.props.onCloseDetailedView}>Назад к списку</button>
+        {isNullOrUndefined(this.props.onCloseDetailedView)
+          ? null
+          : <button className="css-button" onClick={this.props.onCloseDetailedView}>Назад к списку</button>}
         <div className="css-label-main">Карточка студента</div>
         <div><span className="css-label">Номер группы: </span><span>{student.groupNumber}</span></div>
         <div><span className="css-label">Имя: </span><span>{student.fullName}</span></div>
@@ -92,11 +94,14 @@ export default class DetailedView extends React.Component{
           ? null
           : <div className="css-sets">
               <span className="css-label-main">Наборы, которые необходимо пройти: </span>
-              {this.state.setsToChallenge.map((set, index) => (
-                <div key={index}><span className="css-label">Название: </span><span>{set.set.name}</span></div>
+              {this.state.setsToChallenge.map((set, index) => ( <div key={index}>
+                <div><span className="css-label">Название: </span><span>{set.set.name}</span></div>
+                {isNullOrUndefined(this.props.onStartChallenge)
+                  ? null
+                  : <button className="css-button" onClick={this.onStartChallenge.bind(this)}>Начать</button>}</div>
               ))}
           </div>}
-        {isEmptyObject(this.state.restSets)
+        {isEmptyObject(this.state.restSets) || isNullOrUndefined(this.props.assignSetToStudent)
           ? null
           : <div className="css-sets">
               <span className="css-label-main">Назначить набор, который необходимо пройти: </span>
