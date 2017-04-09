@@ -6,18 +6,20 @@ export default class Students extends React.Component{
         let students = this.props.students.map((student, index) =>
             <Student key={index} student={student}/>
         );
-        return (
-          students.length > 0
+        return <div className="css-table">
+          {students.length > 0
             ?  <table>
                   <tbody>
                   <tr>
-                      <th>Full Name</th>
-                      <th>Group Number</th>
+                      <th>№</th>
+                      <th>Имя</th>
+                      <th>Номер группы</th>
+                      <th>Информация</th>
                   </tr>
                   {students}
                   </tbody>
                 </table>
-            : null
-        )
+            : null}
+        </div>
     }
 }

@@ -4,11 +4,12 @@
 <head lang="en">
     <meta charset="UTF-8"/>
     <title>Lingvic</title>
-    <link rel="stylesheet" href="/main.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./resources/styles/main.css" />
 </head>
 <body>
 
-<div id="react"></div>
+<div id="css-site-wrapper"></div>
 
 <script src="./resources/scripts/build/bundle.js"></script>
 
