@@ -110,6 +110,9 @@ tr:nth-child(even){
 .css-label {
   font-weight: bold;
 }
+.css-sets {
+  margin: 30px 0 20px 0;
+}
 .css-validation {
   color: red;
   font-size: 18px;

@@ -26,8 +26,7 @@ class App extends React.Component {
 
     componentDidMount() {
         client({method: 'GET', path: '/student/all'}).done(response => {
-            this.setState({students: response.entity});
-            console.log(response);
+            this.setState({ students: response.entity });
         });
     }
 
