@@ -101,7 +101,7 @@ export default class DetailedView extends React.Component{
                   : <button className="css-button" onClick={this.props.onStartChallenge.bind(this, set.set.id)}>Начать</button>}</div>
               ))}
           </div>}
-        {isEmptyObject(this.state.restSets) || isNullOrUndefined(this.props.assignSetToStudent)
+        {isEmptyObject(this.state.restSets) || isNullOrUndefined(this.props.onAssignSet)
           ? null
           : <div className="css-sets">
               <span className="css-label-main">Назначить набор, который необходимо пройти: </span>
