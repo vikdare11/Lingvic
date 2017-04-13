@@ -8,6 +8,7 @@ import Menu from './components/Menu'
 import Header from './components/Header'
 import Login from './components/Login'
 import DetailedView from './components/DetailedView'
+import Quiz from './components/Quiz'
 import {isEmptyObject, isNullOrUndefined} from './utils'
 import {getMenuItems} from './utils/menu'
 
@@ -20,7 +21,9 @@ class App extends React.Component {
           isMenuOpened: false,
           students: [],
           currentUser: [],
-          currentStudentId: -1
+          currentStudentId: -1,
+          isChallengeBegun: false,
+          setToChallenge: null
         };
     }
 
@@ -90,8 +93,16 @@ class App extends React.Component {
       xhr.send(JSON.stringify({ setId: setId, studentId: studentId, isChallenged: isChallenged }));
     }
 
-    handleStartChallenge(setId) {
-      console.log(setId);
+    sendResult(result, setId) {
+      this.handleAssignSet(setId, this.state.currentUser.id, result.isSuccessful ? 2 : 1)
+    }
+
+    handleStartChallenge(set) {
+      this.setState({ isChallengeBegun: true, setToChallenge: set });
+    }
+
+    handlePopupClose() {
+      this.setState({ isChallengeBegun: false, setToChallenge: null });
     }
 
     render() {
@@ -122,6 +133,11 @@ class App extends React.Component {
                                 onStartChallenge={this.handleStartChallenge.bind(this)}  />
                 : null}
             </div>
+            {this.state.isChallengeBegun
+              ? <Quiz set={this.state.setToChallenge}
+                      onPopupClose={this.handlePopupClose.bind(this)}
+                      onFinishQuiz={this.sendResult.bind(this)}/>
+              : null}
           </div>
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -52,6 +53,7 @@ public class StudentController {
                 }});
 
         if (studentWordSet != null) {
+            studentWordSet.setChallengeDate(new Date());
             studentWordSet.setIsChallenged(studentSet.getIsChallenged());
             studentWordSetRepository.save(studentWordSet);
             return new ResponseEntity<List<Student>>((List<Student>) studentRepository.findAll(), HttpStatus.OK);

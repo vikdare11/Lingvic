@@ -1,6 +1,8 @@
 package by.bsuir.lingvic.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity(name = "word")
@@ -18,6 +20,11 @@ public class Word {
 
     @Column(name = "image_link")
     private String imageLink;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="set_id")
+    private Set set;
 
     public Long getId() {
         return id;
@@ -49,5 +56,13 @@ public class Word {
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
+    }
+
+    public Set getSet() {
+        return set;
+    }
+
+    public void setSet(Set set) {
+        this.set = set;
     }
 }

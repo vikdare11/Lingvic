@@ -98,7 +98,7 @@ export default class DetailedView extends React.Component{
                 <div className="css-oneSet"><span className="css-label">Название: </span><span>{set.set.name}</span></div>
                 {isNullOrUndefined(this.props.onStartChallenge)
                   ? null
-                  : <button className="css-button" onClick={this.props.onStartChallenge.bind(this, set.set.id)}>Начать</button>}</div>
+                  : <button className="css-button" onClick={this.props.onStartChallenge.bind(this, set.set)}>Начать</button>}</div>
               ))}
           </div>}
         {isEmptyObject(this.state.restSets) || isNullOrUndefined(this.props.onAssignSet)
