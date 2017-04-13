@@ -139,7 +139,7 @@ tr:nth-child(even){
   position: relative;
   margin: 5% auto 0px auto;
   width: 500px;
-  height: 300px;
+  height: 335px;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px #000;
@@ -151,9 +151,11 @@ tr:nth-child(even){
   cursor: pointer;
 }
 .css-answer {
-  width: calc(100% - 4px);
+  width: calc(100% - 44px);
   height: 20px;
+  bottom: 60px;
   font-size: 17px;
+  position: absolute;
 }
 .css-button.next {
   position: absolute;
@@ -169,4 +171,11 @@ tr:nth-child(even){
   position: absolute;
   bottom: 20px;
   right: 20px;
+}
+.css-image {
+  margin-left: 175px;
+  margin-top: 10px;
+  position: relative;
+  max-width: 180px;
+  max-height: 120px;
 }

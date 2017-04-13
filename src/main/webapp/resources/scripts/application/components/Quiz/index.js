@@ -62,7 +62,7 @@ export default class Quiz extends React.Component{
                     <span className="css-label">Name: </span>
                     {this.props.set.name}
                   </div>
-                  <br/><br/>
+                  <br/>
                   {this.state.isFinished
                     ? <div>
                         <span className="css-label">{this.state.result.message}</span>
@@ -72,6 +72,7 @@ export default class Quiz extends React.Component{
                     <div>
                       <div className="css-label">Enter the word according to the following description: </div>
                       <div className="css-word-text">{question.description}</div>
+                      <img className="css-image" src={question.imageLink}/>
                     </div>
                     <br/>
                     <input ref="answer"
