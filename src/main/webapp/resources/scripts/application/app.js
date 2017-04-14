@@ -9,8 +9,10 @@ import Header from './components/Header'
 import Login from './components/Login'
 import DetailedView from './components/DetailedView'
 import Quiz from './components/Quiz'
+import WordSets from './components/WordSets'
 import {isEmptyObject, isNullOrUndefined} from './utils'
 import {getMenuItems} from './utils/menu'
+import {getWordSetsByStudentsList} from './utils/sets'
 
 class App extends React.Component {
     constructor(props) {
@@ -75,6 +77,10 @@ class App extends React.Component {
       this.setState({ currentStudentId: -1 })
     }
 
+    getAllWordSets() {
+      return getWordSetsByStudentsList(this.state.students);
+    }
+
     handleAssignSet(setId, studentId, isChallenged) {
       if (isNullOrUndefined(setId) || isNullOrUndefined(studentId) || isNullOrUndefined(isChallenged)) return;
       var xhr = new XMLHttpRequest(),
@@ -131,6 +137,9 @@ class App extends React.Component {
                 ? <DetailedView studentId={this.state.currentUser.id}
                                 students={this.state.students}
                                 onStartChallenge={this.handleStartChallenge.bind(this)}  />
+                : null}
+              {this.state.menuItem.Name == "words"
+                ? <WordSets sets={this.getAllWordSets()} />
                 : null}
             </div>
             {this.state.isChallengeBegun
