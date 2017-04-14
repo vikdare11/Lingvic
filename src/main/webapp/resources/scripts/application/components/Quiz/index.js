@@ -35,14 +35,17 @@ export default class Quiz extends React.Component{
       var result = this.state.result;
       this.props.set.wordSet.forEach((word, index) => {
         if (word.word.trim().toLowerCase() !== answers[index].trim().toLowerCase()) {
-          this.setState({ result: { isSuccessful: false, message: "Failed! :(" } });
-          result = { isSuccessful: false, message: "Failed! :(" }
+          result = { isSuccessful: false, message: "Failed! :(" };
+          this.setState({ result });
         }
       });
       return result;
     }
 
     handlePreviousClick() {
+      var answers = cloneDeep(this.state.answers);
+      answers.pop();
+      this.setState({ answers });
       const previousQuestion = this.state.currentQuestion - 1;
       this.setState({ currentQuestion: previousQuestion, value: this.state.answers[previousQuestion] });
     }
@@ -72,7 +75,7 @@ export default class Quiz extends React.Component{
                     <div>
                       <div className="css-label">Enter the word according to the following description: </div>
                       <div className="css-word-text">{question.description}</div>
-                      <img className="css-image" src={question.imageLink}/>
+                      <div className="css-image-container"><img className="css-image" src={question.imageLink}/></div>
                     </div>
                     <br/>
                     <input ref="answer"

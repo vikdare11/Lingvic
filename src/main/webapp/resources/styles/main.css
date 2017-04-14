@@ -173,9 +173,18 @@ tr:nth-child(even){
   right: 20px;
 }
 .css-image {
-  margin-left: 175px;
-  margin-top: 10px;
-  position: relative;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   max-width: 180px;
-  max-height: 120px;
+  max-height: 130px;
+}
+.css-image-container {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  margin-top: 5px;
 }
