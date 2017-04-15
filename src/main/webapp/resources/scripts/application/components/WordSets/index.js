@@ -29,7 +29,7 @@ export default class WordSets extends React.Component{
                 </tr>
                 {this.props.sets.map((set, index) =>
                   <tr key={index} className="css-tableRow">
-                    <td>{set.id}</td>
+                    <td>{index+1}</td>
                     <td>{set.name}</td>
                     <td>{set.wordSet.map((word, wordIndex) => (
                       <span key={wordIndex}>{word.word.concat(wordIndex == set.wordSet.length - 1 ? "" : ", ")}</span>

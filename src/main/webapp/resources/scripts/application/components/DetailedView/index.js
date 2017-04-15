@@ -85,21 +85,45 @@ export default class DetailedView extends React.Component{
           ? null
           : <div className="css-sets">
               <span className="css-label-main">Пройденные наборы: </span>
-              {this.state.completedSets.map((set, index) => ( <div key={index}>
-                <div><span className="css-label">Название: </span><span>{set.set.name}</span></div>
-                <div><span className="css-label">Дата выполнения: </span><span>{set.challengeDate}</span></div></div>
-              ))}
+              <table className="css-table-mini">
+              <tbody>
+                <tr>
+                  <th>№</th>
+                  <th>Название</th>
+                  <th>Дата выполнения</th>
+                </tr>
+                {this.state.completedSets.map((set, index) => (
+                  <tr key={index} className="css-tableRow">
+                    <td>{index+1}</td>
+                    <td>{set.set.name}</td>
+                    <td>{set.challengeDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+              </table>
             </div>}
         {isEmptyObject(this.state.setsToChallenge)
           ? null
           : <div className="css-sets">
               <span className="css-label-main">Наборы, которые необходимо пройти: </span>
-              {this.state.setsToChallenge.map((set, index) => ( <div key={index}>
-                <div className="css-oneSet"><span className="css-label">Название: </span><span>{set.set.name}</span></div>
-                {isNullOrUndefined(this.props.onStartChallenge)
-                  ? null
-                  : <button className="css-button" onClick={this.props.onStartChallenge.bind(this, set.set)}>Начать</button>}</div>
-              ))}
+              <table className="css-table-mini">
+              <tbody>
+                <tr>
+                  <th>№</th>
+                  <th>Название</th>
+                  <th></th>
+                </tr>
+                {this.state.setsToChallenge.map((set, index) => (
+                  <tr key={index} className="css-tableRow">
+                    <td>{index+1}</td>
+                    <td>{set.set.name}</td>
+                    <td>{isNullOrUndefined(this.props.onStartChallenge)
+                      ? null
+                      : <button className="css-button" onClick={this.props.onStartChallenge.bind(this, set.set)}>Начать</button>}</td>
+                  </tr>
+                ))}
+              </tbody>
+              </table>
           </div>}
         {isEmptyObject(this.state.restSets) || isNullOrUndefined(this.props.onAssignSet)
           ? null

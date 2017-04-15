@@ -219,3 +219,6 @@ tr:nth-child(even){
 .css-answer-input {
   width: calc(100% - 114px);
 }
+.css-table-mini {
+  width: 40%;
+}
