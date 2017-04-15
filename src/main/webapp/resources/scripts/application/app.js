@@ -3,13 +3,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import client from './client'
+
 import Students from './components/Students'
+import Teachers from './components/Teachers'
 import Menu from './components/Menu'
 import Header from './components/Header'
 import Login from './components/Login'
 import DetailedView from './components/DetailedView'
 import Quiz from './components/Quiz'
 import WordSets from './components/WordSets'
+
 import {isEmptyObject, isNullOrUndefined} from './utils'
 import {getMenuItems} from './utils/menu'
 import {getWordSetsByStudentsList} from './utils/sets'
@@ -25,13 +28,18 @@ class App extends React.Component {
           currentUser: [],
           currentStudentId: -1,
           isChallengeBegun: false,
-          setToChallenge: null
+          setToChallenge: null,
+          teachers: []
         };
     }
 
     componentDidMount() {
         client({method: 'GET', path: '/student/all'}).done(response => {
             this.setState({ students: response.entity });
+        });
+
+        client({method: 'GET', path: '/teacher/all'}).done(response => {
+            this.setState({ teachers: response.entity });
         });
     }
 
@@ -63,6 +71,7 @@ class App extends React.Component {
         }
       };
       xhr.send(JSON.stringify({ login: login, password: password }));
+      console.log(this.state);
     }
 
     handleLogoutClick() {
@@ -127,7 +136,8 @@ class App extends React.Component {
               {this.state.menuItem.Name == "students"
                 ? this.state.currentStudentId < 0
                   ? <Students students={this.state.students}
-                              onStudentClick={this.handleOnStudentClick.bind(this)}/>
+                              onStudentClick={this.handleOnStudentClick.bind(this)}
+                              user={this.state.currentUser}/>
                   : <DetailedView studentId={this.state.currentStudentId}
                                   students={this.state.students}
                                   onCloseDetailedView={this.closeDetailedView.bind(this)}
@@ -140,6 +150,9 @@ class App extends React.Component {
                 : null}
               {this.state.menuItem.Name == "words"
                 ? <WordSets sets={this.getAllWordSets()} />
+                : null}
+              {this.state.menuItem.Name == "teachers"
+                ? <Teachers teachers={this.state.teachers}/>
                 : null}
             </div>
             {this.state.isChallengeBegun
