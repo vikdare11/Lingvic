@@ -187,6 +187,9 @@ tr:nth-child(even){
   left: 220px;
   bottom: 20px;
 }
+.css-button.teacher {
+  width: 160px;
+}
 .css-image {
   position: absolute;
   margin: auto;
@@ -225,4 +228,14 @@ tr:nth-child(even){
 }
 .css-table-mini {
   width: 40%;
+}
+.css-popup-content.teacher .css-answerBlock .css-label {
+  width: 175px;
+  float: left;
+}
+.css-popup-content.teacher .css-answer-input {
+  width: 321px;
+}
+.css-popup-content.teacher .css-answer-textarea {
+  width: calc(100% - 181px);
 }

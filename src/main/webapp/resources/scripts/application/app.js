@@ -2,6 +2,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import md5 from 'md5'
 import client from './client'
 
 import Students from './components/Students'
@@ -71,7 +72,6 @@ class App extends React.Component {
         }
       };
       xhr.send(JSON.stringify({ login: login, password: password }));
-      console.log(this.state);
     }
 
     handleLogoutClick() {
@@ -120,6 +120,26 @@ class App extends React.Component {
       this.setState({ isChallengeBegun: false, setToChallenge: null });
     }
 
+    handleAddTeacher(info) {
+      if (isNullOrUndefined(info)) return;
+      var xhr = new XMLHttpRequest(),
+          me = this;
+      xhr.open('POST', '/teacher/add');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var data = JSON.parse(xhr.responseText);
+          if (!isEmptyObject(data))
+            me.setState({ teachers: data });
+        }
+        if (xhr.status === 404) {
+        }
+      };
+      xhr.send(JSON.stringify({ fullName: info.name,
+                                educationInfo: info.info,
+                                user: { login: info.login, password: md5(info.password), role: [ { id: 2 } ] } }));
+    }
+
     render() {
         return isEmptyObject(this.state.currentUser)
           ? <Login ref="login" onClick={this.handleLoginClick.bind(this)}/>
@@ -152,7 +172,8 @@ class App extends React.Component {
                 ? <WordSets sets={this.getAllWordSets()} />
                 : null}
               {this.state.menuItem.Name == "teachers"
-                ? <Teachers teachers={this.state.teachers}/>
+                ? <Teachers teachers={this.state.teachers}
+                            onAddNewTeacher={this.handleAddTeacher.bind(this)}/>
                 : null}
             </div>
             {this.state.isChallengeBegun

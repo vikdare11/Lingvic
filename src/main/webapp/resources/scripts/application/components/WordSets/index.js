@@ -1,5 +1,5 @@
 import React from "react"
-import AddEntity from "./addEntity"
+import AddEntity from "../AddEntity"
 
 export default class WordSets extends React.Component{
     constructor() {

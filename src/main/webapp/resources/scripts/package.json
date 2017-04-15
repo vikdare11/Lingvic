@@ -21,6 +21,7 @@
   "homepage": "https://github.com/spring-guides/tut-react-and-spring-data-rest",
   "dependencies": {
     "lodash": "^4.17.4",
+    "md5": "^2.2.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "rest": "^1.3.1",

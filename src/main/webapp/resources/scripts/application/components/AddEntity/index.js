@@ -14,6 +14,12 @@ export default class AddEntity extends React.Component{
                    url: ReactDOM.findDOMNode(me.refs.pictureUrl).value,
                    setId: this.props.setId }
           break;
+        case "teacher":
+          info = { login: ReactDOM.findDOMNode(me.refs.name).value,
+                   password: ReactDOM.findDOMNode(me.refs.password).value,
+                   name: ReactDOM.findDOMNode(me.refs.fio).value,
+                   info: ReactDOM.findDOMNode(me.refs.info).value }
+          break;
         default:
           break;
       }
@@ -45,12 +51,35 @@ export default class AddEntity extends React.Component{
                         <input ref="pictureUrl" type="text" className="css-answer-input url" placeholder="Или введите url картинки" />
                       </div>
                     </div>
-                  : <div>
+                  : null}
+                {this.props.type == "set"
+                  ? <div>
                       <div className="css-answerBlock">
                         <span className="css-label">Название </span>
                         <input ref="name" type="text" className="css-answer-input" />
                       </div>
-                    </div>}
+                    </div>
+                  : null}
+                {this.props.type == "teacher"
+                  ? <div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">Имя пользователя</span>
+                        <input ref="name" type="text" className="css-answer-input" />
+                      </div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">Пароль</span>
+                        <input ref="password" type="text" className="css-answer-input" />
+                      </div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">ФИО</span>
+                        <input ref="fio" type="text" className="css-answer-input" />
+                      </div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">Информация</span>
+                        <textarea ref="info" className="css-answer-textarea"></textarea>
+                      </div>
+                    </div>
+                  : null}
                 <button className="css-button add" onClick={this.handleAddEntity.bind(this, this.props.type)}>Добавить</button>
             </div>
         </div>

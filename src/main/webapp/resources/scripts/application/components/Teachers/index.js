@@ -1,8 +1,23 @@
 import React from "react"
+import AddEntity from "../AddEntity"
 
 export default class Teachers extends React.Component{
+    constructor() {
+      super();
+      this.state = { isPopupOpened: false }
+    }
+
+    handlePopupOpen() {
+      this.setState({ isPopupOpened: true })
+    }
+
+    handlePopupClose(type, info) {
+      this.setState({ isPopupOpened: false })
+      this.props.onAddNewTeacher(info);
+    }
+
     render() {
-        return <div className="css-table">
+        return <div><div className="css-table">
           {this.props.teachers.length > 0
             ?  <table>
                   <tbody>
@@ -22,7 +37,12 @@ export default class Teachers extends React.Component{
                   )}
                   </tbody>
                 </table>
-            : null}
+            : null}</div>
+            <button className="css-button teacher" onClick={this.handlePopupOpen.bind(this)}>+ Преподаватель</button>
+            {this.state.isPopupOpened
+              ? <AddEntity type={"teacher"}
+                           onPopupClose={this.handlePopupClose.bind(this)} />
+              : null}
         </div>
     }
 }
