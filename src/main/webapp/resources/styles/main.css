@@ -153,7 +153,7 @@ tr:nth-child(even){
   height: 150px;
 }
 .css-popup .css-popup-content.word{
-  height: 250px;
+  height: 270px;
 }
 .fa-window-close-o {
   position: absolute;
@@ -204,7 +204,7 @@ tr:nth-child(even){
   margin-top: 5px;
 }
 .css-answerBlock {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .css-answerBlock:first-child {
    margin-top: 35px;
@@ -218,6 +218,10 @@ tr:nth-child(even){
 }
 .css-answer-input {
   width: calc(100% - 114px);
+}
+.css-answer-input.url {
+  margin-top: 8px;
+  margin-left: 110px;
 }
 .css-table-mini {
   width: 40%;

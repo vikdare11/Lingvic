@@ -11,6 +11,7 @@ export default class AddEntity extends React.Component{
         case "word":
           info = { name: ReactDOM.findDOMNode(me.refs.name).value,
                    description: ReactDOM.findDOMNode(me.refs.description).value,
+                   url: ReactDOM.findDOMNode(me.refs.pictureUrl).value,
                    setId: this.props.setId }
           break;
         default:
@@ -41,6 +42,7 @@ export default class AddEntity extends React.Component{
                       <div className="css-answerBlock">
                         <span className="css-label">Картинка </span>
                         <input ref="file" type="file" className="css-answer-file" accept="image/*" />
+                        <input ref="pictureUrl" type="text" className="css-answer-input url" placeholder="Или введите url картинки" />
                       </div>
                     </div>
                   : <div>
