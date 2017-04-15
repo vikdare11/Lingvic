@@ -1,10 +1,24 @@
 import React from "react"
 import Student from "./student"
+import AddEntity from "../AddEntity"
 
 export default class Students extends React.Component{
+    constructor() {
+      super();
+      this.state = { isPopupOpened: false }
+    }
+
+    handlePopupOpen() {
+      this.setState({ isPopupOpened: true })
+    }
+
+    handlePopupClose(type, info) {
+      this.setState({ isPopupOpened: false })
+      this.props.onAddNewStudent(info);
+    }
     render() {
         const role = this.props.user.role[0].name
-        return <div className="css-table">
+        return <div><div className="css-table">
           {this.props.students.length > 0
             ?  <table>
                   <tbody>
@@ -25,7 +39,14 @@ export default class Students extends React.Component{
                   )}
                   </tbody>
                 </table>
-            : null}
+            : null}</div>
+            {role == "admin"
+              ? <button className="css-button teacher" onClick={this.handlePopupOpen.bind(this)}>+ Студент</button>
+              : null}
+            {this.state.isPopupOpened && role == "admin"
+              ? <AddEntity type={"student"}
+                           onPopupClose={this.handlePopupClose.bind(this)} />
+              : null}
         </div>
     }
 }

@@ -20,6 +20,13 @@ export default class AddEntity extends React.Component{
                    name: ReactDOM.findDOMNode(me.refs.fio).value,
                    info: ReactDOM.findDOMNode(me.refs.info).value }
           break;
+        case "student":
+          info = { login: ReactDOM.findDOMNode(me.refs.name).value,
+                   password: ReactDOM.findDOMNode(me.refs.password).value,
+                   cardNumber: ReactDOM.findDOMNode(me.refs.card).value,
+                   name: ReactDOM.findDOMNode(me.refs.fio).value,
+                   info: ReactDOM.findDOMNode(me.refs.info).value }
+          break;
         default:
           break;
       }
@@ -69,6 +76,30 @@ export default class AddEntity extends React.Component{
                       <div className="css-answerBlock">
                         <span className="css-label">Пароль</span>
                         <input ref="password" type="text" className="css-answer-input" />
+                      </div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">ФИО</span>
+                        <input ref="fio" type="text" className="css-answer-input" />
+                      </div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">Информация</span>
+                        <textarea ref="info" className="css-answer-textarea"></textarea>
+                      </div>
+                    </div>
+                  : null}
+                {this.props.type == "student"
+                  ? <div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">Имя пользователя</span>
+                        <input ref="name" type="text" className="css-answer-input" />
+                      </div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">Пароль</span>
+                        <input ref="password" type="text" className="css-answer-input" />
+                      </div>
+                      <div className="css-answerBlock">
+                        <span className="css-label">Номер студ. билета</span>
+                        <input ref="card" type="text" className="css-answer-input" />
                       </div>
                       <div className="css-answerBlock">
                         <span className="css-label">ФИО</span>
