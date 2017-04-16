@@ -24,7 +24,7 @@ class App extends React.Component {
         this.state = {
           menuItem: [],
           menuItems: [],
-          isMenuOpened: false,
+          isMenuOpened: true,
           students: [],
           currentUser: [],
           currentStudentId: -1,
